@@ -1,5 +1,5 @@
 #include <stdio.h>
-int main(void)                /* finds sum of first 20 integers */
+int main(void)               
 {
 
     int days,count, sum;           /* declaration statement          */
