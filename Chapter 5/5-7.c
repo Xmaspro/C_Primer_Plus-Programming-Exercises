@@ -2,7 +2,7 @@
 int cube(int n);
 
 
-int main(void)                /* finds sum of first 20 integers */
+int main(void)                
 {
     int m;
     printf("Enter a number:\n");
