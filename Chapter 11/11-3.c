@@ -22,7 +22,7 @@ char *get_word(char *out)
 
     while (*in == ' ' || *in == '\n'|| *in == '\t'||*in =='\0')
         in++;
-    while (*in != ' ' || *in != '\n'|| *in != '\t'||*in =='\0')
+    while (*in != ' ' && *in != '\n' && *in != '\t' && *in =='\0')
         *out++ = *in++;
 
     return out;
