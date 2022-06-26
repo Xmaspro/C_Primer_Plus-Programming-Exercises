@@ -60,5 +60,5 @@ void show_info(void)
     if (mode == 0)
         printf("Fuel consumption is %.2lf liters per 100 km.\n", (fuel / range) * 100);
     else
-        printf("Fuel consumption is %.1lf miles per gallon.\n", (fuel / range) * 100);
+        printf("Fuel consumption is %.1lf miles per gallon.\n", (range / fuel) * 100);
 }
