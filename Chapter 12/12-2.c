@@ -7,7 +7,6 @@ static int mode;
 
 int main(void)
 {
-   int mode;
    puts("Enter 0 for metric mode, 1 for US mode:");
    scanf("%d", &mode);
 
