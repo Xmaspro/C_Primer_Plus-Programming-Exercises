@@ -1,20 +1,17 @@
 #include <stdio.h>
 
-int main(void)      
+int main(void){
+    int lower,upper,i;
+    printf("Please enter the lower limit: ");
+    scanf("%d",&lower);
+    printf("Please enter the upper limit: ");
+    scanf("%d",&upper);
 
-{
-    int i, upper, lower;
-    printf("Enter upper limt:");
-    scanf("%d", &upper);
-    printf("Enter lower limt:");
-    scanf("%d", &lower);
+    for (i = lower; i <= upper; i++){
+        printf("%d %d %d\n",i, i*i, i*i*i);
 
-    printf("number     square      cube");
-
-    for (i = lower; i <= upper; i++)
-    {
-        printf("%3d %10d %10d", i, i * i, i * i * i);
-        printf("\n");
     }
-    return 0;
+        return 0;
 }
+
+

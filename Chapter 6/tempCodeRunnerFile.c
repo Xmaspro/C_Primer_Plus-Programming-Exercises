@@ -1,6 +1,4 @@
-#include <stdio.h>
-#define TIMES 5
-int main(void){
+{
     int i, j;
     char c;
     printf("Enter an upper character:");

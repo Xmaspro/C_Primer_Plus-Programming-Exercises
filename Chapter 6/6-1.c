@@ -1,18 +1,19 @@
 #include <stdio.h>
-#define SIZE 26 
+#define SIZE 26
 
-int main(void)      
-
-{
+int main(void){
     char letters[SIZE];
-    char a;
     int i;
+    char a;
 
-    for (i = 0, a = 'a'; a <= 'z'; i++, a++)
+    for (i=0,a = 'a';  i < SIZE; i++, a++){
         letters[i] = a;
-    for (i = 0; i<= SIZE; i++)
-        printf("%c ", letters[i]);
-    printf("\n");
-    
+    }
+
+    for (int i = 0; i < SIZE; i++){
+        printf("%c", letters[i]);
+    }
     return 0;
+
 }
+
