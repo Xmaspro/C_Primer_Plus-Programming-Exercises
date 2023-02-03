@@ -1,26 +1,17 @@
 #include <stdio.h>
-float cal(float m, float n);
+float cal(float, float);
 
 
-
-int main(void)      
-
-{
-   float m, n;
-   printf("Enter two float number(q to quit): ");
-
-   while (scanf("%f %f", &m , &n) == 2)
-    {
-        printf("%.2f\n", cal(m , n) );
-        printf("Enter two float number(q to quit): ");
+int main(void){
+    float m, n;
+    printf("Input two float numbers: ");
+    while (scanf("%f %f", &m, &n) == 2){
+        printf("%.2f\n", cal(m, n));
+        printf("Input two float numbers:(any non-numeric to quit.)\n");
     }
-
-    printf("You have quit.\n");
-
     return 0;
 }
 
-float cal(float m, float n)
-{
-    return (m - n) / (m * n);
+float cal(float a, float b){
+    return (a - b) / (a * b);
 }

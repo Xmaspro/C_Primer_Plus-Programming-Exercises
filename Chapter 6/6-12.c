@@ -1,39 +1,34 @@
 #include <stdio.h>
+#define TIMES 100000
+float sum_1(int);
+float sum_2(int);
 
 
-int main(void)      
+int main(void){
+    float s1 = sum_1(TIMES);
+    float s2 = sum_2(TIMES);
+    printf("Sum of the first group is: %f\n", s1);
+    printf("Sum of the second group is: %f\n", s2);
+    printf("Sum of both group is: %f\n", s1 + s2);
 
-{
-   double sum;
-   int i, length;
-   printf("Enter length:");
-   scanf("%d", &length);
+}
 
-    while (length > 0)
-    {
-        // case 1
-        sum = 0.0;
-        for (i = 0; i < length; i++)
-        {
-            sum = sum + 1.0 / (i + 1);
-        }
-        printf("1+1/2+1/3+...= %.1f\n", sum);
-
-        // case 2
-        sum = 0.0;
-        for (i = 0; i < length; i++)
-        {
-            if (i % 2 == 0) sum = sum + 1.0 / (i + 1);
-            else sum = sum - 1.0 / (i + 1);
-        }
-        printf("1-1/2+1/3-...= %.1f\n", sum);
-
-
-        printf("Enter length:");
-        scanf("%d", &length);
+float sum_1(int num) {
+    int i;
+    float sum = 0;
+    for (i = 1; i <= num; i++){
+        sum += (1.0 / i);
     }
-
-    printf("Done.\n");
-
-    return 0;
+    return sum;
+}
+float sum_2(int num) {
+    int i;
+    float sum = 0;
+    for (i = 1; i <= num; i++){
+        if(i % 2 == 1)
+            sum += (1.0 / i);
+        else
+            sum -= (1.0 / i);
+    }
+    return sum;
 }
