@@ -1,21 +1,26 @@
 #include <stdio.h>
+const int Dunbar_Number = 150;
+int friend_number(int start, int num);
 
-
-int main(void)      
+int main(void)
 {
-    const int Dunbar = 150;
-    int i = 0;
-    int friend = 5;
+    int initial = 5;
+    int week_num = 0;
+    int result = 0;
 
+    do {
+    result = friend_number(initial, week_num);
+    week_num++;
+    } while (result <= Dunbar_Number);
 
-    while (friend < Dunbar)
-    {
-        i++;
-        friend = friend - i + (friend - i) * 2;
-        printf("Week %d: Dr. Rabnud's friends number is %d\n", i, friend);
-        
+    printf("Week %d: %d friends\n", week_num, result);
+}
+
+int friend_number(int start, int num){
+    int sum = start;
+    for (int i = 1; i < num; i++){
+        sum = (sum - i) + 2 * (sum - i);
     }
 
-    printf("End.\n");
-    return 0;
+    return sum;
 }

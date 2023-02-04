@@ -1,21 +1,21 @@
 #include <stdio.h>
 
 
-
-int main(void)      
-{
-    int count = 0;
+int main(void){
     char ch;
+    int count = 1;
 
-    while ((ch = getchar()) != '#')
-    {
-        if ((count++ % 8) == 0)
-            printf("\n");
-        printf("%c-%3d ", ch, ch);
-    
+    printf("Input some characters(# to quit):");
+
+    while ((ch = getchar()) != '#'){
+        if ((count++ % 9) == 0) { printf("\n");}
+        else if (ch == '\n')
+            printf("'\\n'-%03d. ", ch);
+        else if (ch == '\t')
+            printf("'\\t'-%03d. ", ch);
+        else
+            printf("'%c'-%03d, ", ch, ch);
     }
-    printf("...End...\n");
-
-    
+    printf("Done\n");
     return 0;
 }

@@ -1,22 +1,38 @@
 #include <stdio.h>
+float model_1 (float amount, int years, float rate);
+float model_2 (float amount, int years, float rate);
 
 
-int main(void)      
+int main(void){
+    int initial_fund = 100;
+    int rate_1 = 10;
+    int rate_2 = 5;
+    int years = 1;
+    float s1 = model_1(initial_fund, years, rate_1);
+    float s2 = model_2(initial_fund, years, rate_2);
 
-{
-   double Daphne, Deirdre;
-   int i;
-    i = 0;
-    Daphne = Deirdre = 100;
+    do{
+        printf("Year %d: %.2f  %.2f  %.2f", years, s1, s2, s1-s2);
+        printf("\n");
+        years++;
+        s1 = model_1(initial_fund, years, rate_1);
+        s2 = model_2(initial_fund, years, rate_2);
+    } while ((s1 - s2) >= 0);
 
-    do
-    {
-        i++;
-        Daphne = Daphne + 100 * 0.1;
-        Deirdre = Deirdre * (1 + 0.05);
-    } while (Daphne > Deirdre);
-    printf("It takes at least %d years that Deirdre exceeds Daphne.\n", i);
-    printf("Deirdre investment is $%.2lf, Daphne investment is $%.2lf", Deirdre, Daphne);
+    printf("In %dth year, Deirdre investment is higher than Daphne\n", years);
+}
 
-    return 0;
+float model_1 (float amount, int years, float rate){
+    float sum = amount + amount * years * rate / 100.0;
+
+    return sum;
+}
+
+float model_2 (float amount, int years, float rate){
+    float sum = amount;
+    for (int i = 1; i <= years; i++){
+        sum = sum * (1 + rate / 100.0);
+    }
+
+    return sum;
 }

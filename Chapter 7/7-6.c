@@ -1,33 +1,19 @@
 #include <stdio.h>
 
 
-int main(void)      
-{
+int main(void){
     int counter = 0;
-    char ch;
     int mark;
+    char ch;
+    printf("Input some characters (# to quit).");
 
-    printf("Enter one sentence:");
-    while ((ch = getchar()) != '#')
-    {
-        switch (ch)
-        {
-            case 'e':
-                mark = 1;
-                break;
-            case 'i':
-                if (mark == 1)
-                    counter++;
-                mark = 0;
-                break;
-            default:
-                mark = 0;
+    while ((ch = getchar()) != '#'){// Checks if the current character is "e"
+        if(ch == 'e'){// Checks if the next character is "i"
+            if(getchar() == 'i') {
+                counter++;
+            }
         }
     }
-    
-    printf("There are %d \"ei\".\n", counter);
-    printf("...The End...\n");
-
-
+    printf("ei appears %d times.\n", counter);
     return 0;
 }

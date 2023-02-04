@@ -1,8 +1,15 @@
-void show_array(double** array, int a){
-    for (int i = 0; i < a; i++){
-        printf("First array is: %lf", *(array +i));
+#include <stdio.h>
+#include <ctype.h>
+
+int main(void){
+    char ch;
+    while ((ch = getchar()) != '\n'){
+        if (isalpha(ch))
+            putchar(toupper(ch));
+        else
+            putchar(ch);
     }
-    printf("\n");
-    for (int i = 0; i < a; i++){
-    printf("Second array is: %lf", *(*(array+i) + 1));
+    putchar(ch);
+
+    return 0;
 }
