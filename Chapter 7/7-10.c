@@ -2,8 +2,8 @@
 void show_menu(void);
 
 
-int main(void)      
-{ 
+int main(void)
+{
     char choice;
     int i;
     float salary, tax, taxed_salary;
@@ -21,7 +21,7 @@ int main(void)
                 scanf("%f", &salary);
 
                 if (salary <= 17850) tax = salary * 0.15;
-                else 
+                else
                 tax = 17850 * 0.15 + (salary - 17850) * 0.28;
                 taxed_salary = salary - tax;
                 printf("Your salary before tax is %.2f, tax is %.2f, salary after tax is %.2f\n", salary, tax, taxed_salary);
@@ -31,7 +31,7 @@ int main(void)
                 scanf("%f", &salary);
 
                 if (salary <= 23900) tax = salary * 0.15;
-                else 
+                else
                 tax = 23900 * 0.15 + (salary - 23900) * 0.28;
                 taxed_salary = salary - tax;
                 printf("Your salary before tax is %.2f, tax is %.2f, salary after tax is %.2f\n", salary, tax, taxed_salary);
@@ -41,7 +41,7 @@ int main(void)
                 scanf("%f", &salary);
 
                 if (salary <= 29750) tax = salary * 0.15;
-                else 
+                else
                 tax = 29750 * 0.15 + (salary - 29750) * 0.28;
                 taxed_salary = salary - tax;
                 printf("Your salary before tax is %.2f, tax is %.2f, salary after tax is %.2f\n", salary, tax, taxed_salary);
@@ -51,7 +51,7 @@ int main(void)
                 scanf("%f", &salary);
 
                 if (salary <= 14875) tax = salary * 0.15;
-                else 
+                else
                 tax = 14875 * 0.15 + (salary - 14875) * 0.28;
                 taxed_salary = salary - tax;
                 printf("Your salary before tax is %.2f, tax is %.2f, salary after tax is %.2f\n", salary, tax, taxed_salary);
@@ -60,7 +60,7 @@ int main(void)
                 break;
             default:
                 printf("Erro choice. Please make a choice again.\n");
-            }   
+            }
     } while (choice != '5');
     printf("Done.\n");
 

@@ -1,56 +1,79 @@
 #include <stdio.h>
-void show_menu(void);
-void calc_salary(float workhour, float wage);
-
-#define BASICHOUR 40
+#define BASIC_HOUR 40
 #define WAGE_BASE1 300
 #define WAGE_BASE2 450
 #define TAX_RATE1 0.15
 #define TAX_RATE2 0.20
 #define TAX_RATE3 0.25
 
+void show_menu(void);
+float cal_wages(float hours, float basic_wage);
+float cal_tax(float wages, float rate1, float rate2, float rate3);
 
-int main(void)      
-{ 
-    float workhour = 0;
-    char selection;
-    do
-    {
+int main(void)
+{
+    float hours, wage_rate,wages, tax, net_income;
+    int item;
+    do {
         show_menu();
-        scanf("%c", &selection);
-
-        switch (selection)
+        scanf("%d", &item);
+        switch (item)
         {
-            case '1':
-                printf("You've selected $8.75/hr. Enter the work hours:");
-                scanf("%f", &workhour);
-                calc_salary(8.75, workhour);
-                break;
-            case '2':
-                printf("You've selected $9.33/hr. Enter the work hours:");
-                scanf("%f", &workhour);
-                calc_salary(9.33, workhour);
-                break;        
-            case '3':
-                printf("You've selected $10.00/hr. Enter the work hours:");
-                scanf("%f", &workhour);
-                calc_salary(10.00, workhour);
-                break;
-            case '4':
-                printf("You've selected $11.20/hr. Enter the work hours:");
-                scanf("%f", &workhour);
-                calc_salary(11.20, workhour);
-                break;
-            case '5':
-                break;
-            default:
-                printf("Error selected! Please retry!\n");
-                getchar();
-                break;
+        case 1:
+            wage_rate = 8.75;
+            break;
+        case 2:
+            wage_rate = 9.33;
+            break;
+        case 3:
+            wage_rate = 10.00;
+            break;
+        case 4:
+            wage_rate = 11.20;
+            break;
+        case 5:
+            break;
+        default:
+            continue;
         }
-    } while (selection != '5');
-        printf("Done!\n");
+        } while (item !=1 && item != 2 && item != 3 && item != 4 && item != 5);
+
+        printf("Enter the working hours:");
+        scanf("%f",&hours);
+        printf("hours:%.2f,rate of pay: %.2f\n", hours, wage_rate);
+        wages = cal_wages(hours, wage_rate);
+        tax = cal_tax(wages, TAX_RATE1, TAX_RATE2, TAX_RATE3);
+        net_income = wages - tax;
+        printf("Total wages is: %.2f, tax is %.2f, net income is %.2f.\n", wages, tax, net_income);
+
         return 0;
+}
+
+float cal_wages(float hours, float basic_wage)
+{
+    float wages = 0;
+    if (hours <= 40)
+    {
+        wages = basic_wage * hours;
+    }
+    else if (hours > 40)
+    {
+        wages = basic_wage * 40 + basic_wage * (hours - 40) * 1.5;
+    }
+    return wages;
+}
+
+float cal_tax(float wages, float rate1, float rate2, float rate3)
+{
+    float tax = 0;
+    if (wages <= 400)
+        tax = wages * rate1;
+    else if (wages <= 450)
+        tax = 300 * rate1 + (wages - 300) * rate2;
+    else
+        tax = 300 * rate1 + 150 * rate2 + (wages - 450) * rate3;
+
+    return tax;
 }
 
 void show_menu(void)
@@ -69,28 +92,4 @@ void show_menu(void)
     printf("%-40s\n", s4);
     printf("%-40s\n", s5);
     printf("******************************************************************\n");
-}
-
-void calc_salary(float workhour, float wage)
-{
-    float salary, tax, taxed_salary, tax_base1, tax_base2;
-    tax_base1 = WAGE_BASE1 * TAX_RATE1;
-    tax_base2 = WAGE_BASE2 * TAX_RATE2;
-    salary = workhour * wage;
-
-    if (salary <= WAGE_BASE1)
-    {
-        tax = salary * TAX_RATE1;
-        taxed_salary = salary - tax;
-    } else
-    if (salary > WAGE_BASE1 && salary <= WAGE_BASE2)
-    {
-        tax = tax_base1 + (salary - WAGE_BASE1) * TAX_RATE2;
-        taxed_salary = salary - tax;
-    } else
-    if (salary > WAGE_BASE2)
-    {
-        tax = tax_base1 + tax_base2 + (salary - WAGE_BASE2) * TAX_RATE3;
-    }
-    printf("Your salary before tax is %.2f, tax is %.2f, salary after tax is %.2f\n", salary, tax, taxed_salary);
 }

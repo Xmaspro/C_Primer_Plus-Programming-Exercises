@@ -2,7 +2,8 @@
 #include <stdio.h>
 
 // main function
-int main(void){
+int main(void)
+{
     // declare variable to keep track of how many times characters are replaced
     int count = 0;
 
@@ -13,8 +14,10 @@ int main(void){
     printf("Input some characters(# to quit)\n");
 
     // loop through each character until '#' is entered
-    while ((ch = getchar()) != '#'){
-        switch (ch){
+    while ((ch = getchar()) != '#')
+    {
+        switch (ch)
+        {
         case '.':
             printf("!");
             count++;
@@ -33,5 +36,4 @@ int main(void){
 
     // exit the program
     return 0;
-
 }

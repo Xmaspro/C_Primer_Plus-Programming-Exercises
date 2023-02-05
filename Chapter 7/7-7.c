@@ -1,55 +1,61 @@
 #include <stdio.h>
 #define BASIC_WAGE 10.00
-#define BASICHOUR 40
+#define BASIC_HOUR 40
 #define WAGE_BASE1 300
 #define WAGE_BASE2 450
 #define TAX_RATE1 0.15
 #define TAX_RATE2 0.20
 #define TAX_RATE3 0.25
 
+float cal_wages(float hours, float basic_wage);
+float cal_tax(float wages, float rate1, float rate2, float rate3);
 
-int main(void)      
+int main(void)
 {
-    float workhour, wage, tax, net_income, tax_base1, tax_base2;
-    tax_base1 = WAGE_BASE1 * TAX_RATE1;
-    tax_base2 = tax_base1 + (WAGE_BASE2 - WAGE_BASE1) * TAX_RATE2;
-    
-    printf("Enter working hours per week:");
-
-    while (scanf("%f", &workhour) == 1)
+    float hours, wages, tax, net_income;
+    printf("Enter working hours:(# to quit)");
+    while (scanf("%f", &hours) == 1)
     {
-        if (workhour <= 0)
+        if (hours < 0)
         {
-            printf("Please enter working hours > 0:");
-            scanf("%f", &workhour);
+            printf("Working hours cannot be less than 0. Enter again:(# to quit)");
+            continue;
         }
-        else if ((workhour > 0) && (workhour <= BASICHOUR))
+        else
         {
-            wage = BASIC_WAGE * workhour;
-            break;
-        }
-        else 
-        {
-            wage = BASIC_WAGE * BASICHOUR + (workhour - BASICHOUR) * BASIC_WAGE;
-            break;
+            wages = cal_wages(hours, BASIC_WAGE);
+            tax = cal_tax(wages, TAX_RATE1, TAX_RATE2, TAX_RATE3);
+            net_income = wages - tax;
+            printf("Total wages is: %.2f, tax is %.2f, net income is %.2f.\n", wages, tax, net_income);
         }
     }
-    if (wage <= WAGE_BASE1)
-    {
-        tax = wage * TAX_RATE1;
-        net_income = wage - tax;
-    }
-    else if ((wage > WAGE_BASE1) && (wage <= WAGE_BASE2))
-    {
-        tax = tax_base1 + (wage - WAGE_BASE1) * TAX_RATE2;
-        net_income = wage - tax;
-    }
-    else 
-    {
-        tax = tax_base2 + (wage - WAGE_BASE2) * TAX_RATE3;
-        net_income = wage - tax;
-    }
-    printf("The total wage is %.2f, tax is %.2f and net income is %.2f\n", wage, tax, net_income);
 
     return 0;
+}
+
+float cal_wages(float hours, float basic_wage)
+{
+    float wages = 0;
+    if (hours <= 40)
+    {
+        wages = basic_wage * hours;
+    }
+    else if (hours > 40)
+    {
+        wages = basic_wage * 40 + basic_wage * (hours - 40) * 1.5;
+    }
+    return wages;
+}
+
+float cal_tax(float wages, float rate1, float rate2, float rate3)
+{
+    float tax = 0;
+    if (wages <= 400)
+        tax = wages * rate1;
+    else if (wages <= 450)
+        tax = 300 * rate1 + (wages - 300) * rate2;
+    else
+        tax = 300 * rate1 + 150 * rate2 + (wages - 450) * rate3;
+
+    return tax;
 }

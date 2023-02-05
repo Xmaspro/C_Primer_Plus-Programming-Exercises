@@ -1,38 +1,32 @@
 #include <stdio.h>
+int is_prime(int n);
 
-
-int main(void)      
-{ 
-    int i, j, is_prime;
-    int data;
-
-    do
-    {  
-        printf("Enter a positive interger: ");
-        scanf("%d", &data);
-        if (data == 0)
+int main(void)
+{
+    int number, counter;
+    printf("Input a positive integer number:");
+    while ((scanf("%d", &number) == 1) && (number > 0))
+    {
+        for (int i = 1; i <= number; i++)
         {
-            printf("Data out of range. Please input again.\n");
-            continue;
+            if (is_prime(i) == 1)
+                printf("%d ", i);
         }
-        printf("Your input is %d, so the prime from %d to 2 is:", data, data);
-    
-        for (i = data; i > 1; i--)
-        {
-            is_prime = 1;
-            for (j = 2; j <= i/2; j++)
-            {
-                if ((i % j) == 0)
-                {
-                    is_prime = 0;
-                    break;
-                }
-            }
-            if (is_prime == 1)
-            printf("%d ", i);  
-        } printf("\n");
-    } while (data != 0);
+        printf("\n");
+    }
+    printf("\nDone.\n");
+}
 
-        printf("Done!\n");
+int is_prime(int n)
+{
+    int counter = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        if ((n % i) == 0)
+            counter++;
+    }
+    if (counter == 2)
+        return 1;
+    else
         return 0;
 }
