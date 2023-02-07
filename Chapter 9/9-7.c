@@ -3,11 +3,8 @@
 void get_char_pos(void);
 int position(char ch);
 
-int main(void)
-{
-
+int main(void){
     get_char_pos();
-
     return 0;
 }
 
@@ -31,10 +28,9 @@ void get_char_pos(void)
 
 int position(char ch)
 {
-
     if (ch >= 'A' && ch <= 'Z')
         return (ch - 'A' + 1);
-    if  (ch >= 'a' && ch <= 'z')
+    if (ch >= 'a' && ch <= 'z')
         return (ch - 'a' + 1);
     return -1;
 }

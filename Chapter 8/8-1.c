@@ -1,16 +1,15 @@
 #include <stdio.h>
 
-
-
 int main(void)
 {
-    int counter;
     char ch;
-    printf("Enter some characters:");
+    int counter = 0;
+    while ((ch = getchar()) != EOF){
+        if (ch != '\n')
+            counter++;
+        else
+            continue;
+    }
+    printf("You enter a %d characters.\n", counter);
 
-    while ((ch = getchar() != EOF))
-        counter++;
-    printf("Total number of character is %d\n.", counter);
-    printf("....End...\n");
-    return 0;
 }
